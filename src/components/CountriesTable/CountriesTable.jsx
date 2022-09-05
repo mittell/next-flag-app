@@ -82,12 +82,14 @@ const CountriesTable = ({ countries }) => {
 	return (
 		<div>
 			<div className={styles.heading}>
+				<div className={styles.heading_flag}></div>
+
 				<button
 					className={styles.heading_name}
 					onClick={() => setValueAndDirection('name')}
 				>
 					<div>Name</div>
-					<SortArrow />
+					{value === 'name' && <SortArrow direction={direction} />}
 				</button>
 
 				<button
@@ -95,15 +97,45 @@ const CountriesTable = ({ countries }) => {
 					onClick={() => setValueAndDirection('population')}
 				>
 					<div>Population</div>
-					<SortArrow direction={direction} />
+					{value === 'population' && <SortArrow direction={direction} />}
 				</button>
+
+				<div
+					className={styles.heading_area}
+					onClick={() => setValueAndDirection('area')}
+				>
+					<div>
+						Area (km<sup style={{ fontSize: '0.5rem' }}>2</sup>)
+					</div>
+					{/* {value === 'area' && <SortArrow direction={direction} />} */}
+				</div>
+
+				<div
+					className={styles.heading_gini}
+					onClick={() => setValueAndDirection('gini')}
+				>
+					<div>Gini</div>
+					{/* {value === 'gini' && <SortArrow direction={direction} />} */}
+				</div>
 			</div>
 
 			{orderedCountries.map((country, index) => (
 				<Link href={`/country/${country.cca3}`} key={index}>
 					<div className={styles.row}>
+						<div className={styles.flag}>
+							<img src={country.flags.png} alt={country.name.common} />
+						</div>
 						<div className={styles.name}>{country.name.common}</div>
 						<div className={styles.population}>{country.population}</div>
+						<div className={styles.area}>{country.area}</div>
+						<div className={styles.gini}>
+							{country.gini &&
+								Object.values(country.gini).flatMap((cur) => {
+									return cur.toString() + '%';
+								})}
+
+							{!country.gini && <p>N/A</p>}
+						</div>
 					</div>
 				</Link>
 			))}

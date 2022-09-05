@@ -79,15 +79,17 @@ const Country = ({ country }) => {
 							</div>
 						</div>
 
-						<div className={styles.details_panel_row}>
-							<div className={styles.details_panel_label}>Currencies</div>
-							<div className={styles.details_panel_value}>
-								{Object.values(country.currencies)
-									.flatMap((cur) => cur['name'])
-									.toString()
-									.replace(',', ', ')}
+						{country.currencies && (
+							<div className={styles.details_panel_row}>
+								<div className={styles.details_panel_label}>Currencies</div>
+								<div className={styles.details_panel_value}>
+									{Object.values(country.currencies)
+										.flatMap((cur) => cur['name'])
+										.toString()
+										.replace(',', ', ')}
+								</div>
 							</div>
-						</div>
+						)}
 
 						<div className={styles.details_panel_row}>
 							<div className={styles.details_panel_label}>Native names</div>
@@ -104,12 +106,9 @@ const Country = ({ country }) => {
 								<div className={styles.details_panel_label}>Gini</div>
 								<div className={styles.details_panel_value}>
 									{country.gini &&
-										Object.values(country.gini)
-											.flatMap((cur) => {
-												return cur.toString() + '%';
-											})
-											.toString()
-											.replace(',', ', ')}
+										Object.values(country.gini).flatMap((cur) => {
+											return cur.toString() + '%';
+										})}
 								</div>
 							</div>
 						)}

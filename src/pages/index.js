@@ -22,12 +22,15 @@ export default function Home({ countries }) {
 
 	return (
 		<Layout>
-			<div className={styles.count}>Found {countries.length} countries</div>
-
-			<SearchInput
-				placeholder='Filter by Name, Region, or Subregion'
-				onChange={onInputChange}
-			/>
+			<div className={styles.input_container}>
+				<div className={styles.count}>Found {countries.length} countries</div>
+				<div className={styles.input}>
+					<SearchInput
+						placeholder='Filter by Name, Region, or Subregion'
+						onChange={onInputChange}
+					/>
+				</div>
+			</div>
 
 			<CountriesTable countries={filteredCounties} />
 		</Layout>
@@ -35,10 +38,10 @@ export default function Home({ countries }) {
 }
 
 export const getStaticProps = async () => {
-	// const res = await fetch('https://restcountries.com/v3.1/all');
-	const res = await fetch(
-		'https://restcountries.com/v3.1/alpha?codes=GB,US,JP,CN,RU,FR'
-	);
+	const res = await fetch('https://restcountries.com/v3.1/all');
+	// const res = await fetch(
+	// 	'https://restcountries.com/v3.1/alpha?codes=GB,US,JP,CN,RU,FR'
+	// );
 	const countries = await res.json();
 
 	return {
