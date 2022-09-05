@@ -72,12 +72,14 @@ const Country = ({ country }) => {
 							</div>
 						</div>
 
-						<div className={styles.details_panel_row}>
-							<div className={styles.details_panel_label}>Languages</div>
-							<div className={styles.details_panel_value}>
-								{Object.values(country.languages).join(', ')}
+						{country.languages && (
+							<div className={styles.details_panel_row}>
+								<div className={styles.details_panel_label}>Languages</div>
+								<div className={styles.details_panel_value}>
+									{Object.values(country.languages).join(', ')}
+								</div>
 							</div>
-						</div>
+						)}
 
 						{country.currencies && (
 							<div className={styles.details_panel_row}>
@@ -91,15 +93,17 @@ const Country = ({ country }) => {
 							</div>
 						)}
 
-						<div className={styles.details_panel_row}>
-							<div className={styles.details_panel_label}>Native names</div>
-							<div className={styles.details_panel_value}>
-								{Object.values(country.name.nativeName)
-									.flatMap((cur) => cur['official'])
-									.toString()
-									.replace(',', ', ')}
+						{country.name.nativeName && (
+							<div className={styles.details_panel_row}>
+								<div className={styles.details_panel_label}>Native names</div>
+								<div className={styles.details_panel_value}>
+									{Object.values(country.name.nativeName)
+										.flatMap((cur) => cur['official'])
+										.toString()
+										.replace(',', ', ')}
+								</div>
 							</div>
-						</div>
+						)}
 
 						{country.gini && (
 							<div className={styles.details_panel_row}>
