@@ -1,7 +1,8 @@
 /* eslint-disable react/no-unknown-property */
+import { useState } from 'react';
+import Link from 'next/link';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
-import { useState } from 'react';
 
 import styles from './CountriesTable.module.css';
 
@@ -99,10 +100,12 @@ const CountriesTable = ({ countries }) => {
 			</div>
 
 			{orderedCountries.map((country, index) => (
-				<div className={styles.row} key={index}>
-					<div className={styles.name}>{country.name.common}</div>
-					<div className={styles.population}>{country.population}</div>
-				</div>
+				<Link href={`/country/${country.cca3}`} key={index}>
+					<div className={styles.row}>
+						<div className={styles.name}>{country.name.common}</div>
+						<div className={styles.population}>{country.population}</div>
+					</div>
+				</Link>
 			))}
 		</div>
 	);
