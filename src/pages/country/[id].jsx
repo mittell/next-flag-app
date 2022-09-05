@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 import { useEffect, useState } from 'react';
 import Layout from '../../components/Layout/Layout';
-import styles from './country.module.css';
+import styles from './Country.module.css';
 
 const getCountry = async (id) => {
 	const res = await fetch(`https://restcountries.com/v3.1/alpha?codes=${id}`);
