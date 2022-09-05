@@ -149,22 +149,7 @@ const Country = ({ country }) => {
 
 export default Country;
 
-export const getStaticPaths = async () => {
-	const res = await fetch('https://restcountries.com/v3.1/all');
-
-	const countries = await res.json();
-
-	const paths = countries.map((country) => ({
-		params: { id: country.cca3 },
-	}));
-
-	return {
-		paths,
-		fallback: false,
-	};
-};
-
-export const getStaticProps = async ({ params }) => {
+export const getServerSideProps = async ({ params }) => {
 	const country = await getCountry(params.id);
 
 	return {
@@ -173,3 +158,28 @@ export const getStaticProps = async ({ params }) => {
 		},
 	};
 };
+
+// export const getStaticPaths = async () => {
+// 	const res = await fetch('https://restcountries.com/v3.1/all');
+
+// 	const countries = await res.json();
+
+// 	const paths = countries.map((country) => ({
+// 		params: { id: country.cca3 },
+// 	}));
+
+// 	return {
+// 		paths,
+// 		fallback: false,
+// 	};
+// };
+
+// export const getStaticProps = async ({ params }) => {
+// 	const country = await getCountry(params.id);
+
+// 	return {
+// 		props: {
+// 			country: country[0],
+// 		},
+// 	};
+// };
